@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>#25 Погода: сетевые запросы</title>
+        <link href="./css/normalize.css" rel="stylesheet" type="text/css" />
+        <link href="./css/styles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="header">
+            <h2>Strada</h2>
+            <h3>Модуль 2. День 25.</h3>
+            <div style="width: 100px"></div>
+        </div>
+        <div class="main">
+            <h2 class="theme__title">Погода: сетевые запросы</h2>
+            <div class="container">
+                <form class="weather__form">
+                    <input class="weather__city" type="text" placeholder="Архонская">
+                    <button type="submit" id="weather__search" class="btn weather__search-btn"></button>
+                </form>
+                <div class="weather__main">
+                    <div class="weather__info">
+                        <h1 class="weather__temperature">14&deg;</h1>
+                        <div class="weather__icon-block">
+                            <img class="weather__icon" src="./img/cloud.png" alt="weather-img">
+                        </div>
+                        
+                        <div class="weather__bottom">
+                            <h3 class="weather__location">Архонская</h3>
+                            <button class="btn weather__favorite-btn"></button>
+                        </div>
+                    </div>
+                    <div class="weather__added">
+                        <div class="weather__favourite-title">
+                            <h1>Избранные города:</h1>
+                        </div>
+                        <div class="weather__locations">
+                            <ul class="weather__list-сities">
+                                <li class="weather__сity-item">Владикавказ</li>
+                                <li class="weather__сity-item">Санкт-Петербург</li>
+                                <li class="weather__сity-item">Москва</li>
+                                <li class="weather__сity-item">Чита</li>
+                                <li class="weather__сity-item">Краснодар</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./js/main.js" type="module"></script>        
+    </body>
+</html>
