@@ -79,27 +79,11 @@ body{
 .weather__info{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 340px;
     width: 300px;
     padding: 24px;
 }
-.weather__temperature{
-    font-size: 56px;
-    margin-bottom: 30px;
-}
-.weather__icon-block{
-    display: flex;
-    justify-content: center;
-}
-.weather__icon{
-    max-height: 120px;
-    max-width: 120px;
-    object-fit: cover;
-}
-.weather__bottom{
+.weather__loc-fav{
     position: relative;
-    margin-top: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -113,6 +97,58 @@ body{
     height: 40px;
     border-radius: 14px;
 }
+.weather__temperature-block{
+    margin-top: 14px;
+    display: flex;
+}
+.weather__temperature-value{
+    font-size: 70px;
+}
+.weather__img{
+    max-height: 60px;
+    max-width: 60px;
+    object-fit: cover;
+}
+.weather__feels-sun{
+    margin-top: 14px;
+    font-size: 21px;
+}
+.weather__feels-sun-list > li{
+    margin-bottom: 4px;
+}
+.weather__feels-sun-list > li:last-child{
+    margin-bottom: 0;
+}
+.weather__intime{
+    margin-top: 32px;
+    font-size: 18px;
+}
+.weather__intime-list > li{
+    margin-bottom: 10px;
+    border-bottom: 1px solid #fff;
+}
+.weather__intime-list > li:last-child{
+    margin-bottom: 0;
+    border: 0;
+}
+.weather__intime-elem{
+    position: relative;
+}
+.weather__intime-current{
+    margin-bottom: 10px;
+}
+.weather__intime-title{
+    margin-bottom: 18px;
+}
+.weather__img-current{
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    z-index: 1;
+    max-height: 45px;
+    max-width: 45px;
+    object-fit: cover;
+}
 .weather__added{
     display: flex;
     flex-direction: column;
@@ -124,10 +160,8 @@ body{
 }
 .weather__locations{
     padding: 24px;
-    
 }
 .weather__list-сities{
-    height: 220px; 
     overflow: auto;
 }
 .weather__сity-item{
@@ -136,18 +170,18 @@ body{
     cursor: pointer;
     
 }
-.weather__list-city-close-btn{
+.weather__remove-btn{
     position: absolute;
     top: 0;
     right: 0;
     z-index: 1;
     margin-top: 4px;
 }
-.weather__list-city-close-btn:hover{
+.weather__remove-btn:hover{
     background-color: rgb(94, 85, 214, 0.6);
 }
 
-.weather__list-city-close-btn:active{
+.weather__remove-btn:active{
     background-color: rgb(18, 18, 18);
     transition: background-color .3s;
 }
@@ -155,8 +189,10 @@ body{
     .weather__main{
         grid-template-columns: 1fr;    
     }
+    .weather__list-сities{
+        height: 220px;
+    }
 }
-
 @media (max-width: 420px){
     .header{
         flex-direction: column;    
