@@ -1,10 +1,16 @@
-export { firstLetterToUpperCase, latinToCyrillic };
+export { firstLetterToUpperCase, latinToCyrillic, millisecondsToDate };
 
 function firstLetterToUpperCase(value){
   if(value[0] != value.toUpperCase()){
     return value.charAt(0).toUpperCase() + value.slice(1);
   }
 }
+
+function millisecondsToDate(milliseconds){
+  const date = new Date(milliseconds * 1000);
+  return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`
+}
+
 function latinToCyrillic(city) {
   const isRegisterInUpperCase = (symbol) => symbol === symbol.toUpperCase()
   const translit = {
