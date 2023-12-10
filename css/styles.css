@@ -79,7 +79,6 @@ body{
 .weather__info{
     display: flex;
     flex-direction: column;
-    width: 300px;
     padding: 24px;
 }
 .weather__loc-fav{
