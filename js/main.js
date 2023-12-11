@@ -5,7 +5,6 @@ import { firstLetterToUpperCase, millisecondsToDate, latinToCyrillic } from './t
 import { saveCities, saveCurrentCity, getSaveCity, getSaveCitiesList} from './local_storage.js';
 
 let defaultCity = 'Москва';
-
 let favoriteCities = ['Архонская', 'Владикавказ'];
 
 UI_ELEMENTS.WEATHER_FROM.addEventListener('submit', getWeather);
