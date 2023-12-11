@@ -2,17 +2,20 @@ import { makeRequest, getRequest } from './requests.js';
 import { UI_ELEMENTS } from './ui_elements.js';
 import { CONSTS_VALUES } from './consts.js';
 import { firstLetterToUpperCase, millisecondsToDate, latinToCyrillic } from './tools.js';
+import { saveCities, saveCurrentCity, getSaveCity, getSaveCitiesList} from './local_storage.js';
 
-const DEFAULT_CITY = 'Москва';
+let defaultCity = 'Москва';
 
-let favoriteCities = ['Архонская', 'Владикавказ', 'Санкт-Петербург', 'Чита', 'Краснодар'];
+let favoriteCities = ['Архонская', 'Владикавказ'];
 
 UI_ELEMENTS.WEATHER_FROM.addEventListener('submit', getWeather);
 UI_ELEMENTS.FAVORITE_CITY.addEventListener('click', addFavoriteCity);
 
-makeRequest(DEFAULT_CITY);
+favoriteCities = getSaveCitiesList(favoriteCities);
+
+makeRequest(getSaveCity(defaultCity));
 render(favoriteCities, UI_ELEMENTS.WEATHER_CITIES_LIST);
-renderInTime(UI_ELEMENTS.WATHER_INTIME_LIST, DEFAULT_CITY);
+renderInTime(UI_ELEMENTS.WATHER_INTIME_LIST, defaultCity);
 
 function getWeather(event){
     event.preventDefault();
@@ -68,6 +71,7 @@ function addFavoriteCity(){
         }
         favoriteCities.push(cityActual);
         render(favoriteCities, UI_ELEMENTS.WEATHER_CITIES_LIST);
+        saveCities(favoriteCities); 
     }catch(error){
         alert(error);
     }
@@ -82,13 +86,15 @@ function favoriteUpdate(event){
     if (event.target === clickedCity) {
         makeRequest(selectedCity);
         renderInTime(UI_ELEMENTS.WATHER_INTIME_LIST, selectedCity)
+        saveCurrentCity(selectedCity);
     }
 
     if (event.target === cityDeleteBtn || event.target === deleteImgBtn) {
         clickedCity.removeEventListener("click", favoriteUpdate);
         favoriteCities = favoriteCities.filter(city => city !== selectedCity);
-        console.log(favoriteCities);
+
         render(favoriteCities, UI_ELEMENTS.WEATHER_CITIES_LIST);
+        saveCities(favoriteCities);
     }
 }
 
@@ -110,6 +116,7 @@ function makeRequestInTime(weatherInTimeListUI, cityName){
         if(!cityName) throw new(Error('No city!'));
         getRequest(cityName, 'http://api.openweathermap.org/data/2.5/forecast')
             .then(data =>{
+                console.log(data.list[0]);
                 сreateInTimeUI(weatherInTimeListUI, data)
             });
     }catch (error) {
@@ -119,7 +126,7 @@ function makeRequestInTime(weatherInTimeListUI, cityName){
 }
 
 function сreateInTimeUI(weatherInTimeListUI, data) {
-    for (let i = 1; i <= 3; i++) {
+    for (let i = 0; i <= 2; i++) {
         const addInTime = document.createElement("li");
         const weatherCurrent = document.createElement("ul");
         const weatherTitle = document.createElement("li");
