@@ -1,7 +1,8 @@
+export { makeRequest, makeRequestInTime};
 import { UI_ELEMENTS } from './ui_elements.js';
 import { CONSTS_VALUES } from './consts.js';
-import { millisecondsToDate } from './tools.js';
-export { makeRequest, getRequest};
+import { millisecondsToDate, removeMinuse } from './tools.js';
+import { сreateInTimeUI } from './view.js';
 
 const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
 const apiKey = '80b3669790743bca0100b598dba76aa2';
@@ -30,10 +31,10 @@ function makeRequest(cityName){
 		getRequest(cityName, serverUrl)
 			.then(data => {
 				console.log(data);
-				UI_ELEMENTS.LOCATION_TEMPERATURE.textContent = data.main.temp.toFixed();
+				UI_ELEMENTS.LOCATION_TEMPERATURE.textContent = removeMinuse(data.main.temp.toFixed());
 				UI_ELEMENTS.LOCATION_NAME.textContent = cityName;
 				UI_ELEMENTS.WEATHER_ICON.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-				UI_ELEMENTS.TEMPERATURE_FEELS_LIKE.textContent = data.main.feels_like.toFixed() + CONSTS_VALUES.DEGREE_SYMBOL;
+				UI_ELEMENTS.TEMPERATURE_FEELS_LIKE.textContent = removeMinuse(data.main.feels_like.toFixed()) + CONSTS_VALUES.DEGREE_SYMBOL;
 				UI_ELEMENTS.LOCATION_SUNRISE.textContent = millisecondsToDate(data.sys.sunrise);
 				UI_ELEMENTS.LOCATION_SUNSET.textContent = millisecondsToDate(data.sys.sunset);
 			});
@@ -43,3 +44,15 @@ function makeRequest(cityName){
 	}
 }
 
+function makeRequestInTime(weatherInTimeListUI, cityName){
+    try{
+        if(!cityName) throw new Error(CONSTS_VALUES.ERROR_EMPTY_INPUT);
+        getRequest(cityName, forecastUrl)
+            .then(data =>{
+                console.log(data.list[0]);
+                сreateInTimeUI(weatherInTimeListUI, data)
+            });
+    }catch (error) {
+        alert(error);
+    } 
+}
