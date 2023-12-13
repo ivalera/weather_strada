@@ -1,8 +1,4 @@
-export { saveCities, saveCurrentCity, getSaveCity, getSaveCitiesList }
-
-function saveCities(citiesList){
-    localStorage.setItem('citiesList', JSON.stringify(citiesList));
-}
+export { saveCurrentCity, getSaveCity, saveCities, getSaveCitiesList }
 
 function saveCurrentCity(city){
     localStorage.setItem('currentCity', city);
@@ -16,10 +12,11 @@ function getSaveCity(city){
     return city;
 }
 
-function getSaveCitiesList(citiesList){
-    let saveCitiesList = JSON.parse(localStorage.getItem('citiesList'));
-    if(saveCitiesList){
-        citiesList = saveCitiesList;
-    }
-    return citiesList;
+function saveCities(citiesList){
+    console.log(typeof(citiesList));
+    localStorage.setItem('citiesList', JSON.stringify([...citiesList]));
+}
+
+function getSaveCitiesList(){
+    return JSON.parse(localStorage.getItem('citiesList')) || [];
 }
