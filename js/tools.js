@@ -1,4 +1,4 @@
-export { firstLetterToUpperCase, latinToCyrillic, millisecondsToDate };
+export { firstLetterToUpperCase, latinToCyrillic, millisecondsToDate, removeMinuse };
 
 function firstLetterToUpperCase(value){
   if(value[0] != value.toUpperCase()){
@@ -9,6 +9,14 @@ function firstLetterToUpperCase(value){
 function millisecondsToDate(milliseconds){
   const date = new Date(milliseconds * 1000);
   return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`
+}
+
+function removeMinuse(value){
+	if(value === '-0'){
+		return Math.abs(value);
+	}else{
+    return value;
+  }
 }
 
 function latinToCyrillic(city) {
