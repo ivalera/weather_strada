@@ -4,7 +4,7 @@ export const UI_ELEMENTS = {
     LOCATION_TEMPERATURE : document.querySelector('.weather__temperature-value'),
     LOCATION_NAME : document.querySelector('.weather__location'),
     WEATHER_ICON : document.querySelector('.weather__img'),
-    FAVORITE_CITY : document.querySelector('.weather__favorite-btn'),
+    FAVORITE_CITY_BTN : document.querySelector('.weather__favorite-btn'),
     WEATHER_CITIES_LIST : document.querySelector('.weather__list-сities'),
     ACTUAL_CITY : document.querySelector('.weather__location'),
     TEMPERATURE_FEELS_LIKE : document.querySelector('.weather__feels'),
