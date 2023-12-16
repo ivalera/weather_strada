@@ -54,9 +54,7 @@ function сreateInTimeUI(weatherInTimeListUI, data) {
 }
 
 function fullFavoriteBtn(favList, city, btnUI){
-    console.log(favList);
     if(favList.has(city)){
-        console.log('YES');
         btnUI.style.background = 'url(./img/heart-full.svg)';
         btnUI.style.backgroundRepeat = 'no-repeat';
         UI_ELEMENTS.FAVORITE_CITY_BTN.style.backgroundPosition = 'center';
