@@ -21,6 +21,10 @@ function getWeather(event){
     event.preventDefault();
 
     const inputValue =  UI_ELEMENTS.CITY_INPUT.value.trim();
+    if(!inputValue){
+        console.log('YES');
+        renderInTime(UI_ELEMENTS.WATHER_INTIME_LIST, getSaveCity(defaultCity));
+    }
     let cityName = inputValue;
     cityName = firstLetterToUpperCase(cityName);
     
@@ -48,12 +52,19 @@ function addFavoriteCity(){
     const cityActual = UI_ELEMENTS.ACTUAL_CITY.textContent;
     try {
         if (favoriteCities.has(cityActual)) {
-            throw new Error(CONSTS_VALUES.ERROR_SUCH_CTIY);
+            console.log('YES');
+            UI_ELEMENTS.FAVORITE_CITY_BTN.style.background = 'url(./img/heart.svg)';
+            UI_ELEMENTS.FAVORITE_CITY_BTN.style.backgroundRepeat = 'no-repeat';
+            UI_ELEMENTS.FAVORITE_CITY_BTN.style.backgroundPosition = 'center';
+            favoriteCities.delete(cityActual);
+            saveCities(favoriteCities);
+            render(Array.from(favoriteCities), UI_ELEMENTS.WEATHER_CITIES_LIST);
+        }else{
+            favoriteCities.add(cityActual);
+            render(Array.from(favoriteCities), UI_ELEMENTS.WEATHER_CITIES_LIST);
+            saveCities(favoriteCities); 
+            fullFavoriteBtn(favoriteCities, cityActual, UI_ELEMENTS.FAVORITE_CITY_BTN);
         }
-        favoriteCities.add(cityActual);
-        render(Array.from(favoriteCities), UI_ELEMENTS.WEATHER_CITIES_LIST);
-        saveCities(favoriteCities); 
-        fullFavoriteBtn(favoriteCities, cityActual, UI_ELEMENTS.FAVORITE_CITY_BTN);
     }catch(error){
         alert(error);
     }
