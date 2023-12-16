@@ -25,6 +25,7 @@ body{
 }
 .theme__title{
     margin-top: 40px;
+    text-align: center;
     color: #fff;
     margin-bottom: 40px;
 }
