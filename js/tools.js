@@ -13,7 +13,7 @@ function millisecondsToDate(milliseconds){
 
 function removeMinuse(value){
 	if(value === '-0'){
-		return Math.abs(value);
+	  return Math.abs(value);
 	}else{
     return value;
   }
@@ -73,5 +73,5 @@ function latinToCyrillic(city) {
       city = city.replace(city[i], translit[city[i]])
     }
   }
-  return city
+  return city;
 }
