@@ -13,7 +13,6 @@ function getSaveCity(city){
 }
 
 function saveCities(citiesList){
-    console.log(typeof(citiesList));
     localStorage.setItem('citiesList', JSON.stringify([...citiesList]));
 }
 
